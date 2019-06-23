@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Sort {
-    public ArrayList<String> sort(String s) throws IOException {
+    public ArrayList<String> sorting(String s) throws IOException {
         Reader reader = new Reader();
         Parser parser = new Parser();
         ArrayList<String> words = new ArrayList<String>();

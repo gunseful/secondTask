@@ -2,7 +2,6 @@
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -34,9 +33,12 @@ public class Main {
         //Выполнения задания №6
 
         Sort sort = new Sort();
-        sort.sort("C:\\Users\\Ares\\IdeaProjects\\secondTask\\text.txt");
-        for(int i=0;i<sort.sort("C:\\Users\\Ares\\IdeaProjects\\secondTask\\text.txt").size();i++){
-            System.out.println(sort.sort("C:\\Users\\Ares\\IdeaProjects\\secondTask\\text.txt").get(i));
+        // читаем файл, извлекаем текст, переводим в слова, сортируем слова по алфавиту,
+        // если слово начинается с новой буквы, оно с красной строки)
+        sort.sorting("C:\\Users\\Ares\\IdeaProjects\\secondTask\\text.txt");
+        // печатаем отсорированный список:
+        for(int i = 0; i<sort.sorting("C:\\Users\\Ares\\IdeaProjects\\secondTask\\text.txt").size(); i++){
+            System.out.println(sort.sorting("C:\\Users\\Ares\\IdeaProjects\\secondTask\\text.txt").get(i));
         }
 
 
