@@ -5,7 +5,7 @@ for my lovely teacher AlexTuli
 
 <3
 
-v.1.0
+v.1.2
 
 
 Task text:
