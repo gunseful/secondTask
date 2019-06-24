@@ -1,3 +1,5 @@
+package trash;
+
 import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -60,6 +62,16 @@ public class Parser {
                 symbols.add(s);
             }
         }
+        return symbols;
+    }
+
+    public ArrayList<String> parseToMarks(String text) {
+        ArrayList<String> symbols = new ArrayList<String>();
+        Pattern pattern2 = Pattern.compile("[a-zA-Z[-]]+");
+            String[] strings = pattern2.split(text);
+            for (String s : strings) {
+                symbols.add(s);
+            }
         return symbols;
     }
 
