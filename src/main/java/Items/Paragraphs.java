@@ -7,9 +7,9 @@ public class Paragraphs implements Items {
     List<String> paragraphs = new ArrayList<>();
 
     public Paragraphs(String text) {
-        String[] Paragraphs = text.split("\t");
-        for (int i = 0; i < Paragraphs.length; i++) {
-            paragraphs.add(Paragraphs[i]);
+        String[] paragraphsArray = text.split("\t");
+        for (int i = 0; i < paragraphsArray.length; i++) {
+            paragraphs.add(paragraphsArray[i]);
         }
     }
 
