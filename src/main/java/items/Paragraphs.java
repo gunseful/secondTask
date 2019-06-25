@@ -1,13 +1,17 @@
-package Items;
+package items;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Paragraphs implements Items {
-    List<String> paragraphs = new ArrayList<>();
 
+    public Sentences sentences;
+
+    List<String> paragraphs = new ArrayList<>();
     public Paragraphs(String text) {
-        String[] paragraphsArray = text.split("\t");
+        this.sentences = new Sentences(text);
+        String sentText = sentences.backToText();
+        String[] paragraphsArray = sentText.split("\t");
         for (int i = 0; i < paragraphsArray.length; i++) {
             paragraphs.add(paragraphsArray[i]);
         }
@@ -18,10 +22,10 @@ public class Paragraphs implements Items {
     }
 
     @Override
-    public String backToText(List<String> list) {
+    public String backToText() {
         StringBuilder sb = new StringBuilder();
         for (String string : paragraphs) {
-            sb.append(string + "\\t");
+            sb.append(string + "\t");
         }
         return sb.toString();
     }

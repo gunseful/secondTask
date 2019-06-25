@@ -1,4 +1,4 @@
-package Items;
+package items;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ public class Symbols implements Items {
     }
 
     public Symbols(ArrayList<String> list) {
-        ArrayList<java.lang.String> symbols = new ArrayList<java.lang.String>();
+        ArrayList<java.lang.String> symbols = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
             java.lang.String[] strings = list.get(i).split("");
             for (java.lang.String s : strings) {
@@ -24,7 +24,7 @@ public class Symbols implements Items {
     }
 
     @Override
-    public String backToText(List<String> list) {
+    public String backToText() {
         StringBuilder sb = new StringBuilder();
         for (String str : symbols) {
             sb.append(str);

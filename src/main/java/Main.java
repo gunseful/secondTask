@@ -1,24 +1,37 @@
 
 
-import Items.Paragraphs;
-import Items.Words;
+import items.Paragraphs;
+import items.Words;
 import readers.Reader;
 
 import java.io.IOException;
+import java.util.List;
 
 public class Main {
+
+    public static final Reader READER = new Reader();
+
     public static void main(String[] args) throws IOException {
+        String text = READER.read("src/text.txt");
+        Paragraphs paragraphs = new Paragraphs(text);
+        paragraphs.sentences.words.symbols.getItems(); //получаем коллекцию символов из текста
+        paragraphs.sentences.words.getItems(); //получаем коллекцию слов из текста
+        paragraphs.sentences.getItems(); //получаем коллекцию предложений из текста
+        paragraphs.getItems(); //получаем коллекцию предложений из текста
+        //чтобы собрать коллекцию слов в текст вызываем метод backToText у words
+        paragraphs.sentences.words.backToText();
+        //чтобы отсортировать коллекцию слов по алфавиту, убрать повторяющиеся слова,
+        //и сделать чтобы каждая новая буква была с красной строки
+        //используем метод alphabeticalSortingPrint()
+        paragraphs.sentences.words.alphabeticalSortingPrint();
 
-        Reader reader = new Reader();
 
-        Words words = new Words(reader.read("src/text.txt"));
-        words.getItems(); // Получаем коллекцию слов из текста
-        words.backToText(words.getItems());     // Собираем слова обратно в текст
-        // words.alphabeticalSortingPrint();  //Сразу выводит в консоль все слова из текста в алфавитном порядке без повторений
-        Paragraphs parapraphs = new Paragraphs(reader.read("src/text.txt"));
-        parapraphs.getItems(); // Получаем коллекцию параграфов из текста
-        parapraphs.backToText(parapraphs.getItems()); // Собираем параграфы обратно в текст
 
-        // C классами Sententence и Symbols можно проделать тоже самое что и с теми примерами что сверху
+
+
+
+
+
+
     }
 }

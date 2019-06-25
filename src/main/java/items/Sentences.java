@@ -1,4 +1,4 @@
-package Items;
+package items;
 
 import java.text.BreakIterator;
 import java.util.*;
@@ -6,16 +6,21 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Sentences implements Items {
+
+    public Words words;
+
     List<String> sentences = new ArrayList<>();
     Map<Integer, String> marks = new TreeMap<Integer, String>();
 
     public Sentences(String text) {
+        this.words = new Words(text);
+        String wordsText = words.backToText();
         Pattern pattern = Pattern.compile("(\\!\\s|\\.\\s|\\?\\s)");
-        Matcher matcher = pattern.matcher(text);
+        Matcher matcher = pattern.matcher(wordsText);
         while (matcher.find()) {
             marks.put(matcher.start(), matcher.group());
         }
-        String[] sentence = text.split("(\\?|\\.\\s|!)+");
+        String[] sentence = wordsText.split("(\\?|\\.\\s|!)+");
         for (String sent : sentence) {
             sentences.add(sent);
         }
@@ -40,14 +45,10 @@ public class Sentences implements Items {
         return sentences;
     }
 
-    public Map<Integer, String> getMarks() {
-        return marks;
-    }
-
     @Override
-    public String backToText(List<String> list) {
+    public String backToText() {
         StringBuilder sb = new StringBuilder();
-        for (String str : list) {
+        for (String str : sentences) {
             sb.append(str);
         }
         for (Map.Entry<Integer, String> pair : marks.entrySet()) {
