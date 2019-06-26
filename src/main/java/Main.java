@@ -1,12 +1,6 @@
-
-
 import items.Paragraphs;
-import items.Words;
 import readers.Reader;
-
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
 
