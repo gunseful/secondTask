@@ -5,6 +5,7 @@ import items.Words;
 import readers.Reader;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -24,14 +25,5 @@ public class Main {
         //и сделать чтобы каждая новая буква была с красной строки
         //используем метод alphabeticalSortingPrint()
         paragraphs.sentences.words.alphabeticalSortingPrint();
-
-
-
-
-
-
-
-
-
     }
 }

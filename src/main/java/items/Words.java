@@ -24,7 +24,10 @@ public class Words implements Items {
         for (String s : strings2) {
             marks.add(s);
         }
-        marks.add(symbolsText.substring(symbolsText.length() - 2));
+    }
+
+    public List<String> getMarks() {
+        return marks;
     }
 
     @Override
@@ -38,6 +41,8 @@ public class Words implements Items {
         for (int i = 0; i < words.size(); i++) {
             sb.append(marks.get(i));
             sb.append(words.get(i));
+
+
         }
         sb.append(marks.get(marks.size() - 1));
 
