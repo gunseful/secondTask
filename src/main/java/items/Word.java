@@ -1,22 +1,18 @@
 package items;
 
-import readers.Reader;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Word {
-    public String word;
-
-    public String toString(){
-        return word;
-    }
-
+    private String word;
+    public List<Item> letters = new ArrayList<>();
     public List<Item> getLetters() {
         return letters;
     }
 
-    public List<Item> letters = new ArrayList<>();
+    public String toString(){
+        return word;
+    }
 
     public Word(String word) {
         this.word = word;
@@ -28,7 +24,6 @@ public class Word {
             }
         }
     }
-
     public String getWord() {
         return word;
     }

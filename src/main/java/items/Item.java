@@ -1,10 +1,10 @@
 package items;
 
 public class Item {
-    String item;
+    private String item;
 
-    public Item(String mark) {
-        this.item = mark;
+    public Item(String item) {
+        this.item = item;
     }
 
     public String toString() {

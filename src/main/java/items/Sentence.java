@@ -5,16 +5,13 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class Sentence {
-
-    public String sentence;
+    private String sentence;
+    public List<Word> words = new ArrayList<>();
+    public List<Item> marks = new ArrayList<Item>();
 
     public List<Word> getWords() {
         return words;
     }
-
-    public List<Word> words = new ArrayList<>();
-
-    public List<Item> marks = new ArrayList<Item>();
 
     public List<Item> getMarks() {
         return marks;
@@ -39,7 +36,6 @@ public class Sentence {
             marks.add(mark);
         }
     }
-
     public String getSentence() {
         return sentence;
     }

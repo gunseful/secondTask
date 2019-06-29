@@ -8,7 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Paragraph {
-    String paragraph;
+    private String paragraph;
     Map<Integer, Item> marks = new TreeMap<Integer, Item>();
     List<Sentence> sentences = new ArrayList<>();
 
