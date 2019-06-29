@@ -15,7 +15,7 @@ public class Reader implements ReaderInterface{
         while ((stringFromText = readerFromFile.readLine())!=null){
             textArray.add(stringFromText);
         }
-        for (String s : textArray){                    // Собираем весь текст в одну строку
+        for (String s : textArray){
             text += s+"\t";
         }
         return text;
