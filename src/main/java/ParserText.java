@@ -1,8 +1,5 @@
 
-import items.Paragraph;
-import items.Sentence;
-import items.Text;
-import items.Word;
+import items.*;
 
 import java.io.IOException;
 import java.util.*;
@@ -45,11 +42,11 @@ class ParserText {
     private Sentence parseToWords(String a) {
         String[] list = a.split("\\s");
         List<Word> words = new ArrayList<>();
-        List<String> items = new ArrayList<>();
+        List<Item> items = new ArrayList<>();
         for(String s : list){
             if (isWord(s)) {
                 words.add(parseToLetters(s));
-                items.add("");
+                items.add(new Item(""));
             }else{
                 char[] symbols = s.toCharArray();
                 StringBuilder word = new StringBuilder();
@@ -62,7 +59,8 @@ class ParserText {
                     }
                 }
                 words.add(parseToLetters(word.toString()));
-                items.add(mark.toString());
+                Item item = new Item(mark.toString());
+                items.add(item);
             }
         }
         return new Sentence(items, words);
@@ -70,9 +68,10 @@ class ParserText {
 
     private Word parseToLetters(String s) {
         char[] charArray = s.toCharArray();
-        List<Character> letters = new ArrayList<>();
+        List<Letter> letters = new ArrayList<>();
         for (Character v : charArray) {
-            letters.add(v);
+            Letter letter = new Letter(v);
+            letters.add(letter);
         }
         return new Word(letters);
     }

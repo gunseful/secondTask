@@ -6,9 +6,9 @@ public class Sentence {
     public List<Word> getWords() {
         return words;
     }
-    private List<String> items;
+    private List<Item> items;
 
-    public Sentence(List<String> items, List<Word> words) {
+    public Sentence(List<Item> items, List<Word> words) {
         this.words = words;
         this.items = items;
     }
@@ -19,7 +19,7 @@ public class Sentence {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for(int i = 0; i<words.size(); i++){
-            if(items.get(i).equals("(")){
+            if(items.get(i).toString().equals("(")){
                 sb.append(items.get(i));
                 sb.append(words.get(i));
             }else{

@@ -1,8 +1,5 @@
 
-import items.Paragraph;
-import items.Sentence;
-import items.Text;
-import items.Word;
+import items.*;
 import readers.Reader;
 
 import java.io.IOException;
@@ -22,7 +19,7 @@ public class Main {
         System.out.println(sntnc);
         Word str = text.getParagraphs().get(2).getSentences().get(1).getWords().get(1);
         System.out.println(str);
-        char chr = text.getParagraphs().get(2).getSentences().get(1).getWords().get(1).getLetters().get(0);
+        Letter chr = text.getParagraphs().get(2).getSentences().get(1).getWords().get(1).getLetters().get(0);
         System.out.println(chr+"\n");
 
         //        parserText.alphSort(textSource);
