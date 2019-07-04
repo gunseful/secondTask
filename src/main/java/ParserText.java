@@ -5,15 +5,16 @@ import java.io.IOException;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+
+import static java.util.Arrays.stream;
 
 class ParserText {
+
     Text parse(String sourceText) {
-        String[] list = sourceText.split("\\t");
-        List<Paragraph> paragraphs = new ArrayList<>();
-        for (String a : list) {
-            paragraphs.add(parseToSentence(a));
-        }
-        return new Text(paragraphs);
+        return new Text(stream(sourceText.split("\\t"))
+                .map(this::parseToSentence)
+                .collect(Collectors.toList()));
     }
 
     private Paragraph parseToSentence(String a) {
@@ -67,13 +68,8 @@ class ParserText {
     }
 
     private Word parseToLetters(String s) {
-        char[] charArray = s.toCharArray();
-        List<Letter> letters = new ArrayList<>();
-        for (Character v : charArray) {
-            Letter letter = new Letter(v);
-            letters.add(letter);
-        }
-        return new Word(letters);
+        return new Word(s.chars().mapToObj(e -> new Letter((char) e))
+                .collect(Collectors.toList()));
     }
 
     private boolean isWord(String s){
@@ -83,7 +79,7 @@ class ParserText {
             return false;
         }
         for (char c : chars)
-            if (!Character.isLetter(c) & c != '-' & c != '.' & c != '\'') {
+            if (!Character.isLetter(c) && c != '-' & c != '.' & c != '\'') {
                 return false;
             }
         return true;
