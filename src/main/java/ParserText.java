@@ -89,7 +89,7 @@ class ParserText {
         return true;
     }
 
-    public List<String> alphSort(String text) throws IOException {
+    void alphSort(String text) throws IOException {
         List<Paragraph> paragraphs = parse(text).getParagraphs();
         List<String> allWords = new ArrayList<>();
         for (Paragraph aParagraph : paragraphs) {
@@ -132,7 +132,6 @@ class ParserText {
         for (String word : words) {
             System.out.println(word);
         }
-        return words;
     }
 
 }

@@ -1,9 +1,9 @@
 package items;
 
 public class Letter {
-    public Character letter;
+    private Character letter;
 
-        public Letter(Character letter) {
+    public Letter(Character letter) {
         this.letter = letter;
     }
 

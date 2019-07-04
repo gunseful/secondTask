@@ -11,7 +11,7 @@ public class Text {
         return paragraphs;
     }
 
-    List<Paragraph> paragraphs;
+    private List<Paragraph> paragraphs;
 
     @Override
     public String toString() {
