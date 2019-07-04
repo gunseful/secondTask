@@ -1,36 +1,41 @@
+
+import items.Paragraph;
+import items.Sentence;
+import items.Text;
+import items.Word;
 import readers.Reader;
 
 import java.io.IOException;
 
 
 public class Main {
-
-    public static final Reader READER = new Reader();
+    private static final Reader READER = new Reader();
 
     public static void main(String[] args) throws IOException {
         String textSource = READER.read("src/text.txt");
 
         ParserText parserText = new ParserText();
+        Text text = parserText.parse(textSource);
+        System.out.println(text.toString().equals(textSource));
 
-        parserText.parse(textSource);   //Парсим текст
-        System.out.println(parserText.paragraphs.get(2)); //Получаем параграф №3 и выводим на консоль
-        System.out.println(parserText.paragraphs.get(2).getSentences().get(0)); //Получаем первое предложение параграфа №3 и выводим на консоль
-        System.out.println(parserText.paragraphs.get(2).getSentences().get(0).getWords().get(3)); //Получаем 4 слово первого предложения параграфа №3 и выводим на консоль
-        System.out.println(parserText.paragraphs.get(2).getSentences().get(0).getWords().get(3).getLetters().get(2)); //Получаем 3 букву 4го слова первого предложения параграфа №3 и выводим на консоль
+        Sentence sntnc = text.getParagraphs().get(2).getSentences().get(1);
+        System.out.println(sntnc);
+        Word str = text.getParagraphs().get(2).getSentences().get(1).getWords().get(1);
+        System.out.println(str);
+        char chr = text.getParagraphs().get(2).getSentences().get(1).getWords().get(1).getLetters().get(0);
+        System.out.println(chr+"\n");
 
-        //методы собирающие текст из слов, предложений, параграфов, букв:
-        parserText.backFromWordsToText();
-        parserText.backFromSentencesToText();
-        parserText.backFromParagraphsToText();
-        parserText.backFromLettersToText();
-        System.out.println(parserText.backFromWordsToText().equals(textSource));
-        System.out.println(parserText.backFromSentencesToText().equals(textSource));
-        System.out.println(parserText.backFromParagraphsToText().equals(textSource));
-        System.out.println(parserText.backFromLettersToText().equals(textSource));
+        //        parserText.alphSort(textSource);
 
-//        parserText.alphSort(); //Сортирует все слова текста по алфавиту и выводит, каждая новая буква - с красной строки
+        String secontTextSource = "Говно, залупа, пенис, хер, давалка, хуй, блядина. " +
+                "Такова была первая строка в битве между Оксимироном и ДжониБоем. Что сказать, гениально!";
+        Text secondText = parserText.parse(secontTextSource);
+        System.out.println(secondText.getParagraphs().get(0));
+        System.out.println(secondText.getParagraphs().get(0).getSentences().get(1));
+        System.out.println(secondText.getParagraphs().get(0).getSentences().get(1).getWords().get(1));
+        System.out.println(secondText.getParagraphs().get(0).getSentences().get(1).getWords().get(1).getLetters().get(2)+"\n");
 
-
+        parserText.alphSort(secontTextSource);
 
 
 

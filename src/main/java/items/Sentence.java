@@ -1,42 +1,35 @@
 package items;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 public class Sentence {
-    private String sentence;
-    public List<Word> words = new ArrayList<>();
-    public List<Item> marks = new ArrayList<Item>();
-
     public List<Word> getWords() {
         return words;
     }
+    private List<String> items;
 
-    public List<Item> getMarks() {
-        return marks;
+    public Sentence(List<String> items, List<Word> words) {
+        this.words = words;
+        this.items = items;
     }
 
+    private List<Word> words;
+
+    @Override
     public String toString() {
-        return sentence;
-    }
-
-    public Sentence(String sentence) {
-        this.sentence = sentence;
-        Pattern pattern = Pattern.compile("[^a-zA-Z[-]]+");
-        String[] strings = pattern.split(sentence);
-        for (String s : strings) {
-            Word word = new Word(s);
-            words.add(word);
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i<words.size(); i++){
+            if(items.get(i).equals("(")){
+                sb.append(items.get(i));
+                sb.append(words.get(i));
+            }else{
+            sb.append(words.get(i).toString());
+            sb.append(items.get(i));}
+            int w = sb.toString().length();
+            if(!sb.toString().substring(w-1).equals(".")) {
+                sb.append(" ");
+            }
         }
-        Pattern pattern2 = Pattern.compile("[a-zA-Z[-]]+");
-        String[] strings2 = pattern2.split(sentence);
-        for (String s : strings2) {
-            Mark mark = new Mark(s);
-            marks.add(mark);
-        }
-    }
-    public String getSentence() {
-        return sentence;
+        return sb.toString();
     }
 }
