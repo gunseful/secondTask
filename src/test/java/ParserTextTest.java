@@ -1,6 +1,7 @@
 import items.Text;
 import org.junit.Assert;
 import org.junit.Test;
+import parser.ParserText;
 import readers.Reader;
 
 import java.io.IOException;

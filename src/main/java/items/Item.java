@@ -1,14 +1,25 @@
 package items;
 
-public class Item {
-    private String item;
+import java.util.List;
 
-    public Item(String item) {
-        this.item = item;
+public class Item {
+    public List<Symbol> getSymbolList() {
+        return symbolList;
     }
+
+    protected List<Symbol> symbolList;
+
+    public Item(List<Symbol> symbolList) {
+        this.symbolList = symbolList;
+    }
+
 
     @Override
     public String toString() {
-        return item;
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i<symbolList.size(); i++) {
+            sb.append(symbolList.get(i));
+        }
+        return sb.toString();
     }
 }

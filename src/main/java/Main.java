@@ -1,4 +1,5 @@
 
+import parser.ParserText;
 import items.Letter;
 import items.Sentence;
 import items.Text;
@@ -16,6 +17,7 @@ public class Main {
 
         ParserText parserText = new ParserText();
         Text text = parserText.parse(textSource);
+        System.out.println(text.toString());
         System.out.println(text.toString().equals(textSource));
 
         Sentence sntnc = text.getParagraphs().get(2).getSentences().get(1);

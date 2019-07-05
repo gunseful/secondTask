@@ -18,17 +18,13 @@ public class Sentence {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for(int i = 0; i<words.size(); i++){
-            if(items.get(i).toString().equals("(")){
-                sb.append(items.get(i));
-                sb.append(words.get(i));
-            }else{
-            sb.append(words.get(i).toString());
-            sb.append(items.get(i));}
+        for(int i = 0; i<items.size(); i++) {
+            sb.append(items.get(i).toString());
             int w = sb.toString().length();
             if(!sb.toString().substring(w-1).equals(".")) {
                 sb.append(" ");
             }
+
         }
         return sb.toString();
     }

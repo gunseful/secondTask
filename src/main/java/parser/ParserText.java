@@ -1,3 +1,4 @@
+package parser;
 
 import items.*;
 
@@ -9,9 +10,9 @@ import java.util.stream.Collectors;
 
 import static java.util.Arrays.stream;
 
-class ParserText {
+public class ParserText {
 
-    Text parse(String sourceText) {
+    public Text parse(String sourceText) {
         return new Text(stream(sourceText.split("\\t"))
                 .map(this::parseToSentence)
                 .collect(Collectors.toList()));
@@ -45,23 +46,18 @@ class ParserText {
         List<Word> words = new ArrayList<>();
         List<Item> items = new ArrayList<>();
         for(String s : list){
+            items.add(parseToSymbols(s));
+            StringBuilder word = new StringBuilder();
+            char[] symbols = s.toCharArray();
             if (isWord(s)) {
                 words.add(parseToLetters(s));
-                items.add(new Item(""));
             }else{
-                char[] symbols = s.toCharArray();
-                StringBuilder word = new StringBuilder();
-                StringBuilder mark = new StringBuilder();
                 for (char symbol : symbols) {
                     if (Character.isLetter(symbol)) {
                         word.append(symbol);
-                    } else {
-                        mark.append(symbol);
                     }
                 }
                 words.add(parseToLetters(word.toString()));
-                Item item = new Item(mark.toString());
-                items.add(item);
             }
         }
         return new Sentence(items, words);
@@ -69,6 +65,11 @@ class ParserText {
 
     private Word parseToLetters(String s) {
         return new Word(s.chars().mapToObj(e -> new Letter((char) e))
+                .collect(Collectors.toList()));
+    }
+
+    private Item parseToSymbols(String s) {
+        return new Item(s.chars().mapToObj(e -> new Symbol((char) e))
                 .collect(Collectors.toList()));
     }
 
