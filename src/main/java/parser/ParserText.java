@@ -36,12 +36,12 @@ public class ParserText {
             }
             count++;
             String u = sb.toString();
-            sentences.add(parseToWords(u));
+            sentences.add(parseToItems(u));
         }
         return new Paragraph(sentences);
     }
 
-    private Sentence parseToWords(String a) {
+    private Sentence parseToItems(String a) {
         String[] list = a.split("\\s");
         List<Word> words = new ArrayList<>();
         List<Item> items = new ArrayList<>();
@@ -64,7 +64,7 @@ public class ParserText {
     }
 
     private Word parseToLetters(String s) {
-        return new Word(s.chars().mapToObj(e -> new Letter((char) e))
+        return new Word(s.chars().mapToObj(e -> new Symbol((char) e))
                 .collect(Collectors.toList()));
     }
 
@@ -86,7 +86,7 @@ public class ParserText {
         return true;
     }
 
-    void alphSort(String text) throws IOException {
+    public void alphSort(String text) throws IOException {
         List<Paragraph> paragraphs = parse(text).getParagraphs();
         List<String> allWords = new ArrayList<>();
         for (Paragraph aParagraph : paragraphs) {

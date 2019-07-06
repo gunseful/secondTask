@@ -1,14 +1,14 @@
 package items;
 
 public class Symbol {
-    private Character letter;
+    private Character symbol;
 
-    public Symbol(Character letter) {
-        this.letter = letter;
+    public Symbol(Character symbol) {
+        this.symbol = symbol;
     }
 
     @Override
     public String toString() {
-        return String.valueOf(letter);
+        return String.valueOf(symbol);
     }
 }

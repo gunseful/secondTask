@@ -3,9 +3,6 @@ package items;
 import java.util.List;
 
 public class Item {
-    public List<Symbol> getSymbolList() {
-        return symbolList;
-    }
 
     protected List<Symbol> symbolList;
 
@@ -13,6 +10,9 @@ public class Item {
         this.symbolList = symbolList;
     }
 
+    public List<Symbol> getSymbolList() {
+        return symbolList;
+    }
 
     @Override
     public String toString() {

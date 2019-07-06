@@ -3,17 +3,18 @@ package items;
 import java.util.List;
 
 public class Sentence {
-    public List<Word> getWords() {
-        return words;
-    }
+
     private List<Item> items;
+    private List<Word> words;
 
     public Sentence(List<Item> items, List<Word> words) {
         this.words = words;
         this.items = items;
     }
 
-    private List<Word> words;
+    public List<Word> getWords() {
+        return words;
+    }
 
     @Override
     public String toString() {
@@ -24,7 +25,6 @@ public class Sentence {
             if(!sb.toString().substring(w-1).equals(".")) {
                 sb.append(" ");
             }
-
         }
         return sb.toString();
     }

@@ -3,20 +3,21 @@ package items;
 import java.util.List;
 
 public class Word {
-    private List<Letter> letters;
 
-    public Word(List<Letter> letters) {
-        this.letters = letters;
+    private List<Symbol> symbols;
+
+    public Word(List<Symbol> symbols) {
+        this.symbols = symbols;
     }
 
-    public List<Letter> getLetters() {
-        return letters;
+    public List<Symbol> getLetters() {
+        return symbols;
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for(Letter h : letters){
+        for(Symbol h : symbols){
             sb.append(h);
         }
         return sb.toString();

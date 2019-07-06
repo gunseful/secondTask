@@ -1,9 +1,6 @@
 
+import items.*;
 import parser.ParserText;
-import items.Letter;
-import items.Sentence;
-import items.Text;
-import items.Word;
 import readers.Reader;
 
 import java.io.IOException;
@@ -24,10 +21,10 @@ public class Main {
         System.out.println(sntnc);
         Word str = text.getParagraphs().get(2).getSentences().get(1).getWords().get(1);
         System.out.println(str);
-        Letter chr = text.getParagraphs().get(2).getSentences().get(1).getWords().get(1).getLetters().get(0);
+        Symbol chr = text.getParagraphs().get(2).getSentences().get(1).getWords().get(1).getLetters().get(0);
         System.out.println(chr+"\n");
 
-        //        parserText.alphSort(textSource);
+                parserText.alphSort(textSource);
 
         String secontTextSource = "Говно, залупа, пенис, хер, давалка, хуй, блядина. " +
                 "Такова была первая строка в битве между Оксимироном и ДжониБоем. Что сказать, гениально!";
@@ -37,6 +34,6 @@ public class Main {
         System.out.println(secondText.getParagraphs().get(0).getSentences().get(1).getWords().get(1));
         System.out.println(secondText.getParagraphs().get(0).getSentences().get(1).getWords().get(1).getLetters().get(2)+"\n");
 
-        //        parserText.alphSort(secontTextSource);
+                parserText.alphSort(secontTextSource);
     }
 }

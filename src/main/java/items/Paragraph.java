@@ -3,15 +3,16 @@ package items;
 import java.util.List;
 
 public class Paragraph {
-    public List<Sentence> getSentences() {
-        return sentences;
-    }
+
+    private List<Sentence> sentences;
 
     public Paragraph(List<Sentence> sentences) {
         this.sentences = sentences;
     }
 
-    private List<Sentence> sentences;
+    public List<Sentence> getSentences() {
+        return sentences;
+    }
 
     @Override
     public String toString() {
