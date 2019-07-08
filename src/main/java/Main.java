@@ -19,9 +19,9 @@ public class Main {
 
         Sentence sntnc = text.getParagraphs().get(2).getSentences().get(1);
         System.out.println(sntnc);
-        Word str = text.getParagraphs().get(2).getSentences().get(1).getWords().get(1);
-        System.out.println(str);
-        Symbol chr = text.getParagraphs().get(2).getSentences().get(1).getWords().get(1).getLetters().get(0);
+//        Word str = text.getParagraphs().get(2).getSentences().get(1).getItems().get(1);
+//        System.out.println(str);
+        Symbol chr = text.getParagraphs().get(2).getSentences().get(1).getItems().get(1).getSymbolList().get(0);
         System.out.println(chr+"\n");
 
                 parserText.alphSort(textSource);
@@ -31,8 +31,8 @@ public class Main {
         Text secondText = parserText.parse(secontTextSource);
         System.out.println(secondText.getParagraphs().get(0));
         System.out.println(secondText.getParagraphs().get(0).getSentences().get(1));
-        System.out.println(secondText.getParagraphs().get(0).getSentences().get(1).getWords().get(1));
-        System.out.println(secondText.getParagraphs().get(0).getSentences().get(1).getWords().get(1).getLetters().get(2)+"\n");
+//        System.out.println(secondText.getParagraphs().get(0).getSentences().get(1).getWords().get(1));
+//        System.out.println(secondText.getParagraphs().get(0).getSentences().get(1).getWords().get(1).getLetters().get(2)+"\n");
 
                 parserText.alphSort(secontTextSource);
     }

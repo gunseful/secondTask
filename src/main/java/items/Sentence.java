@@ -5,24 +5,22 @@ import java.util.List;
 public class Sentence {
 
     private List<Item> items;
-    private List<Word> words;
 
-    public Sentence(List<Item> items, List<Word> words) {
-        this.words = words;
+    public Sentence(List<Item> items) {
         this.items = items;
     }
 
-    public List<Word> getWords() {
-        return words;
+    public List<Item> getItems() {
+        return items;
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for(int i = 0; i<items.size(); i++) {
-            sb.append(items.get(i).toString());
+        for (Item item : items) {
+            sb.append(item.toString());
             int w = sb.toString().length();
-            if(!sb.toString().substring(w-1).equals(".")) {
+            if (!sb.toString().substring(w - 1).equals(".")) {
                 sb.append(" ");
             }
         }

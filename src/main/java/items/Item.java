@@ -2,9 +2,9 @@ package items;
 
 import java.util.List;
 
-public class Item {
+public abstract class Item {
 
-    protected List<Symbol> symbolList;
+    private List<Symbol> symbolList;
 
     public Item(List<Symbol> symbolList) {
         this.symbolList = symbolList;
@@ -14,11 +14,13 @@ public class Item {
         return symbolList;
     }
 
+    public abstract boolean isWord();
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for(int i = 0; i<symbolList.size(); i++) {
-            sb.append(symbolList.get(i));
+        for (Symbol symbol : symbolList) {
+            sb.append(symbol);
         }
         return sb.toString();
     }

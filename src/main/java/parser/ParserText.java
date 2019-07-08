@@ -14,8 +14,8 @@ public class ParserText {
 
     public Text parse(String sourceText) {
         return new Text(stream(sourceText.split("\\t"))
-                .map(this::parseToSentence)
-                .collect(Collectors.toList()));
+            .map(this::parseToSentence)
+            .collect(Collectors.toList()));
     }
 
     private Paragraph parseToSentence(String a) {
@@ -27,7 +27,7 @@ public class ParserText {
             marks.add(matcher.group().substring(0, 1));
         }
         List<Sentence> sentences = new ArrayList<>();
-        int count=1;
+        int count = 1;
         for (String y : list) {
             StringBuilder sb = new StringBuilder();
             sb.append(y);
@@ -36,53 +36,45 @@ public class ParserText {
             }
             count++;
             String u = sb.toString();
-            sentences.add(parseToItems(u));
+            sentences.add(parseItem(u));
         }
         return new Paragraph(sentences);
     }
 
-    private Sentence parseToItems(String a) {
+    private Sentence parseItem(String a) {
         String[] list = a.split("\\s");
-        List<Word> words = new ArrayList<>();
         List<Item> items = new ArrayList<>();
-        for(String s : list){
-            items.add(parseToSymbols(s));
-            StringBuilder word = new StringBuilder();
-            char[] symbols = s.toCharArray();
+        for (String s : list) {
             if (isWord(s)) {
-                words.add(parseToLetters(s));
-            }else{
-                for (char symbol : symbols) {
-                    if (Character.isLetter(symbol)) {
-                        word.append(symbol);
-                    }
-                }
-                words.add(parseToLetters(word.toString()));
+                items.add(parseWord(s));
+            } else {
+                items.add(parseSentencePart(s));
             }
         }
-        return new Sentence(items, words);
+        return new Sentence(items);
     }
 
-    private Word parseToLetters(String s) {
+    private Word parseWord(String s) {
         return new Word(s.chars().mapToObj(e -> new Symbol((char) e))
-                .collect(Collectors.toList()));
+            .collect(Collectors.toList()));
     }
 
-    private Item parseToSymbols(String s) {
-        return new Item(s.chars().mapToObj(e -> new Symbol((char) e))
-                .collect(Collectors.toList()));
+    private SentenceParts parseSentencePart(String s) {
+        return new SentenceParts(s.chars().mapToObj(e -> new Symbol((char) e))
+            .collect(Collectors.toList()));
     }
 
-    private boolean isWord(String s){
+    private boolean isWord(String s) {
         char[] chars;
         chars = s.toCharArray();
         if (chars[chars.length - 1] == '.') {
             return false;
         }
-        for (char c : chars)
+        for (char c : chars) {
             if (!Character.isLetter(c) && c != '-' & c != '.' & c != '\'') {
                 return false;
             }
+        }
         return true;
     }
 
@@ -91,8 +83,11 @@ public class ParserText {
         List<String> allWords = new ArrayList<>();
         for (Paragraph aParagraph : paragraphs) {
             for (Sentence sentence : aParagraph.getSentences()) {
-                for (int i = 0; i < sentence.getWords().size(); i++) {
-                    allWords.add(sentence.getWords().get(i).toString());
+                for (int i = 0; i < sentence.getItems().size(); i++) {
+                    final Item item = sentence.getItems().get(i);
+                    if (item.isWord()) {
+                        allWords.add(item.toString());
+                    }
                 }
             }
         }
