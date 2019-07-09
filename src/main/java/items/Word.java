@@ -2,7 +2,7 @@ package items;
 
 import java.util.List;
 
-public class Word extends Item {
+public class Word extends Item implements Comparable<Word> {
 
     public Word(List<Symbol> symbols) {
         super(symbols);
@@ -13,4 +13,8 @@ public class Word extends Item {
         return true;
     }
 
+    @Override
+    public int compareTo(Word o) {
+        return toString().compareToIgnoreCase(o.toString());
+    }
 }

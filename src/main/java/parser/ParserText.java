@@ -13,8 +13,9 @@ import java.util.stream.Collectors;
 
 import static java.util.Arrays.stream;
 
-public class ParserText {
+public class ParserText implements Parser{
 
+    @Override
     public Text parse(String sourceText) {
         return new Text(stream(sourceText.split("\\t"))
                 .map(this::parseToSentence)
@@ -67,13 +68,9 @@ public class ParserText {
 
                     }
                 }
-                if (sb.toString().equals("")) {
-                    continue;
-                } else {
+                if (!sb.toString().equals("")) {
                     sb.append(items.add(parseWord(sb.toString())));
                 }
-
-//                items.add(parseSentencePart(s));
             }
         }
         return new Sentence(items);
@@ -106,7 +103,7 @@ public class ParserText {
         return true;
     }
 
-    public List<String> alphSort(Text text) throws IOException {
+    public List<String> alphSort(Text text) {
         Set<String> set = new TreeSet<>();
         for (Word word : text.getWords()) {
             set.add(word.toString().substring(0, 1).toUpperCase() + word.toString().substring(1));
