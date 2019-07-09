@@ -1,8 +1,12 @@
 package items;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Text {
+
+    private List<Paragraph> paragraphs;
+
     public Text(List<Paragraph> paragraphs) {
         this.paragraphs = paragraphs;
     }
@@ -11,7 +15,15 @@ public class Text {
         return paragraphs;
     }
 
-    private List<Paragraph> paragraphs;
+    public List<Word> getWords() {
+        List<Word> words = new ArrayList<>();
+        for(Paragraph paragraph : paragraphs){
+            words.addAll(paragraph.getWords());
+        }
+        return words;
+    }
+
+
 
     @Override
     public String toString() {

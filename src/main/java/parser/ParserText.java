@@ -3,7 +3,10 @@ package parser;
 import items.*;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -14,8 +17,8 @@ public class ParserText {
 
     public Text parse(String sourceText) {
         return new Text(stream(sourceText.split("\\t"))
-            .map(this::parseToSentence)
-            .collect(Collectors.toList()));
+                .map(this::parseToSentence)
+                .collect(Collectors.toList()));
     }
 
     private Paragraph parseToSentence(String a) {
@@ -45,10 +48,32 @@ public class ParserText {
         String[] list = a.split("\\s");
         List<Item> items = new ArrayList<>();
         for (String s : list) {
+            StringBuilder sb = new StringBuilder();
             if (isWord(s)) {
                 items.add(parseWord(s));
             } else {
-                items.add(parseSentencePart(s));
+                char[] charArray = s.toCharArray();
+                for (char c : charArray) {
+                    if (Character.isLetter(c)) {
+                        sb.append(c);
+                    } else {
+                        if (!sb.toString().isEmpty()) {
+                            items.add(parseWord(sb.toString()));
+                            sb.setLength(0);
+                        }
+
+                        items.add(parseSentencePart(String.valueOf(c)));
+
+
+                    }
+                }
+                if (sb.toString().equals("")) {
+                    continue;
+                } else {
+                    sb.append(items.add(parseWord(sb.toString())));
+                }
+
+//                items.add(parseSentencePart(s));
             }
         }
         return new Sentence(items);
@@ -56,17 +81,20 @@ public class ParserText {
 
     private Word parseWord(String s) {
         return new Word(s.chars().mapToObj(e -> new Symbol((char) e))
-            .collect(Collectors.toList()));
+                .collect(Collectors.toList()));
     }
 
     private SentenceParts parseSentencePart(String s) {
         return new SentenceParts(s.chars().mapToObj(e -> new Symbol((char) e))
-            .collect(Collectors.toList()));
+                .collect(Collectors.toList()));
     }
 
     private boolean isWord(String s) {
         char[] chars;
         chars = s.toCharArray();
+        if (chars[0] == '.') {
+            return false;
+        }
         if (chars[chars.length - 1] == '.') {
             return false;
         }
@@ -78,52 +106,24 @@ public class ParserText {
         return true;
     }
 
-    public void alphSort(String text) throws IOException {
-        List<Paragraph> paragraphs = parse(text).getParagraphs();
-        List<String> allWords = new ArrayList<>();
-        for (Paragraph aParagraph : paragraphs) {
-            for (Sentence sentence : aParagraph.getSentences()) {
-                for (int i = 0; i < sentence.getItems().size(); i++) {
-                    final Item item = sentence.getItems().get(i);
-                    if (item.isWord()) {
-                        allWords.add(item.toString());
-                    }
-                }
-            }
+    public List<String> alphSort(Text text) throws IOException {
+        Set<String> set = new TreeSet<>();
+        for (Word word : text.getWords()) {
+            set.add(word.toString().substring(0, 1).toUpperCase() + word.toString().substring(1));
         }
-        for (String st : allWords) {
-            st.replaceAll(" ", "");
-        }
-        Set<String> wordsNoRepetitions = new HashSet<String>(allWords);
-        List<String> words = new ArrayList<>(wordsNoRepetitions);
-        for (int i = 0; i < words.size(); i++) {
-            if (words.get(i).isEmpty()) {
-                words.remove(i);
-            }
-        }
-        for (int i = 0; i < words.size(); i++) {
-            String word = words.get(i).substring(0, 1).toUpperCase() + words.get(i).substring(1);
-            words.set(i, word);
-        }
-        Collections.sort(words);
-        String firstWord = words.get(0);
-        words.set(0, " " + firstWord);
-        for (int n = 0; n < words.size() - 1; n++) {
-            if (words.get(n).substring(0, 1).equals(" ")) {
-                if (!words.get(n).substring(1, 2).equals(words.get(n + 1).substring(0, 1))) {
-                    String y = " " + words.get(n + 1);
-                    words.set(n + 1, y);
+        List<String> list = new ArrayList<>(set);
+        list.set(0, " " + list.get(0));
+        for (int n = 0; n < list.size() - 1; n++) {
+            if (list.get(n).substring(0, 1).equals(" ")) {
+                if (!list.get(n).substring(1, 2).equals(list.get(n + 1).substring(0, 1))) {
+                    list.set(n + 1, " " + list.get(n + 1));
                 }
             } else {
-                if (!words.get(n).substring(0, 1).equals(words.get(n + 1).substring(0, 1))) {
-                    String y = " " + words.get(n + 1);
-                    words.set(n + 1, y);
+                if (!list.get(n).substring(0, 1).equals(list.get(n + 1).substring(0, 1))) {
+                    list.set(n + 1, " " + list.get(n + 1));
                 }
             }
         }
-        for (String word : words) {
-            System.out.println(word);
+        return list;
         }
     }
-
-}

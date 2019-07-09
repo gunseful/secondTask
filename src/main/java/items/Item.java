@@ -6,7 +6,7 @@ public abstract class Item {
 
     private List<Symbol> symbolList;
 
-    public Item(List<Symbol> symbolList) {
+    Item(List<Symbol> symbolList) {
         this.symbolList = symbolList;
     }
 

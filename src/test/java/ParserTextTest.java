@@ -7,7 +7,7 @@ import readers.Reader;
 import java.io.IOException;
 
 public class ParserTextTest {
-    public static final Reader READER = new Reader();
+    private static final Reader READER = new Reader();
     @Test
     public void parse() throws IOException {
         String textSource = READER.read("src/text.txt");

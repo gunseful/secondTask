@@ -1,5 +1,6 @@
 package items;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Paragraph {
@@ -12,6 +13,14 @@ public class Paragraph {
 
     public List<Sentence> getSentences() {
         return sentences;
+    }
+
+    public List<Word> getWords() {
+        List<Word> words = new ArrayList<>();
+        for(Sentence sentence : sentences){
+            words.addAll(sentence.getWords());
+        }
+        return words;
     }
 
     @Override
