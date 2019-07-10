@@ -20,17 +20,13 @@ public class Main {
         final Text alexText = ALEX_PARSER.parse(textSource);
         Text text = ILUXA_PARSER.parse(textSource);
 
+//        alexText.getParagraphs().get(0).getWords().stream().forEach(System.out::println) ;
+//        alexText.getParagraphs().get(0).getSentences().stream().forEach(System.out::println) ;
+        ILUXA_PARSER.alphSort(text).stream().forEach(System.out::println);
+
         System.out.printf("Is Alex text equals to original? [%s]%n", alexText.toString().equals(textSource) ? "YES" : "NO");
-        System.out.printf("Is gunself text equals to original? [%s]%n", text.toString().equals(textSource) ? "YES" : "NO");
-        System.out.printf("Is Alex equals to gunself? [%s]%n", alexText.toString().equals(text.toString()) ? "YES" : "NO");
+//        System.out.printf("Is gunself text equals to original? [%s]%n", text.toString().equals(textSource) ? "YES" : "NO");
+//        System.out.printf("Is Alex equals to gunself? [%s]%n", alexText.toString().equals(text.toString()) ? "YES" : "NO");
 
-//        System.out.println(text.toString());
-//        System.out.println(textSource);
-//        System.out.println(text.toString().equals(textSource)+"\n");
-//        text.getWords();
-//        text.getParagraphs().get(0).getWords();
-//        text.getParagraphs().get(0).getSentences().get(0).getWords().get(1);
-
-//        ILUXA_PARSER.alphSort(text).forEach(System.out::println);
     }
 }
