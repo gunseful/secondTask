@@ -1,15 +1,6 @@
 gunseful
 Second Task
 
-for my lovely teacher AlexTuli
-
-<3
-
-What's new in version 4.0
-1.  Как же заебала данная задача уже
-2.  Очень сильно!
-3.  Кароче 2 текста запарсил, все пашет
-
 Task text:
 
 Task2
